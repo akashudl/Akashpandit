@@ -54,7 +54,7 @@ class LexChatBot extends React.Component {
      var  email=getuser;
     var getrole=AuthenticationService.getRole();
     var permission="";
-    axios.get(`http://localhost:3006/api/v1/user/${email}/${inputField}`).then(response=>{
+    axios.get(`http://172.16.7.249:3006/api/v1/user/${email}/${inputField}`).then(response=>{
       console.log(response.data.data.user.count);
        if(response.data.data.user.count==1)
        {
