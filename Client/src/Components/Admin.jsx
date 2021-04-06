@@ -20,7 +20,7 @@ export default class Admin extends Component {
     componentDidMount() 
     { 
      
-     axios.get("http://localhost:3006/api/v1/userdetails").then(response=>{
+     axios.get("http://172.16.7.249:3006/api/v1/userdetails").then(response=>{
        this.setState({userInfo:response.data.data.user})
        console.log(response);
       });
@@ -36,7 +36,7 @@ export default class Admin extends Component {
     }
     submitdata=()=>
     {
-      axios.post("http://localhost:3006/api/v1/createuser",{
+      axios.post("http://172.16.7.249:3006/api/v1/createuser",{
           email:this.state.email,
           acessrole:this.state.acessrole
          })
