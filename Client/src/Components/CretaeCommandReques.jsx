@@ -24,7 +24,7 @@ export default class CretaeCommandReques extends Component {
       }
       submitdata=()=>
       {
-        axios.post("http://localhost:3006/api/v1/usercommand",{
+        axios.post("http://172.16.7.249:3006/api/v1/usercommand",{
             acessrole_code:this.state.acessrole,
             botcommands:this.state.botcommands,
             active:this.state.Active
