@@ -1,0 +1,61 @@
+select count(1) from qb_userdetails  qbud join  qb_rolecommanddetails as qbcrd on qbud.acessrole_code=qbcrd.acessrole_code
+where qbud.usermail=(select coalesce(usermail, 'qcemployee@qwikcilver.com') from qb_userdetails where usermail = 'jayasurya.j@qwikcilver.com')
+and qbcrd.botcommands='start';
+
+
+
+select count(1) from qb_userdetails  qbud join  qb_rolecommanddetails as qbcrd on qbud.acessrole_code=qbcrd.acessrole_code
+where qbud.usermail = 'akash.pandit_intern@qwikcilver.com'
+and qbcrd.botcommands='gcstart';
+
+
+
+Username [postgres]:
+Password for user postgres:
+psql (12.6)
+WARNING: Console code page (437) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# \c practice2
+You are now connected to database "practice2" as user "postgres".
+practice2=# \d
+Did not find any relations.
+practice2=# create table QB_userdetails(srno int IDENTITY(1,1), usermail varchar(100) not null,acessrole_id smallint,acessrole_code char(3));
+ERROR:  syntax error at or near "IDENTITY"
+LINE 1: create table QB_userdetails(srno int IDENTITY(1,1), usermail...
+                                             ^
+practice2=# create table QB_userdetails(srno int  GENERATED ALWAYS AS IDENTITY not null, usermail varchar(100) not null,acessrole_id smallint,acessrole_code char(3));
+CREATE TABLE
+practice2=# create table qb_acessrolemaster(acessrole_id smallint,acessrole_code char(3) not null, acessrole_name varchar(50),createdt timestamp default now());
+CREATE TABLE
+practice2=# create table QB_userdetails(srno int  GENERATED ALWAYS AS IDENTITY not null, usermail varchar(100) not null,acessrole_id smallint,acessrole_code char(3));
+CREATE TABLE
+practice2=# create table Qb_rolecommanddetails(srno int GENERATED ALWAYS AS IDENTITY not null,acessrole_code char(3),botcommands varchar(50),active char(1) not null,createDt timestamp default now());
+CREATE TABLE
+practice2=# select count(1) from qb_userdetails  join  qb_rolecommanddetails  on QBud.accessrole_code=QBrcd.accessrole_codewhere QBud.useremail=(select isnull(useremail, 'qcemployee@qwikcilver.com') from QB_userdetails where useremail = 'jayasurya@qwikcilver.com')and QBrcd.botcommands='start'
+practice2-# select count(1) from qb_userdetails  join  qb_rolecommanddetails  on QBud.accessrole_code=QBrcd.accessrole_codewhere QBud.useremail=(select isnull(useremail, 'qcemployee@qwikcilver.com') from QB_userdetails where useremail = 'jayasurya@qwikcilver.com')and QBrcd.botcommands='start';
+ERROR:  syntax error at or near "QBud"
+LINE 1: ...n QBud.accessrole_code=QBrcd.accessrole_codewhere QBud.usere...
+                                                             ^
+practice2=# select count(1) from qb_userdetails  join  qb_rolecommanddetails  on QBud.accessrole_code=QBrcd.accessrole_codewhere QBud.useremail=(select isnull(useremail, 'qcemployee@qwikcilver.com') from QB_userdetails where useremail = 'jayasurya@qwikcilver.com')and QBrcd.botcommands='start';
+ERROR:  syntax error at or near "QBud"
+LINE 1: ...n QBud.accessrole_code=QBrcd.accessrole_codewhere QBud.usere...
+                                                             ^
+practice2=# select count(1) from qb_userdetails QBud  join  qb_rolecommanddetails QBcrd  on QBud.accessrole_code=QBrcd.accessrole_codewhere QBud.useremail=(select isnull(useremail, 'qcemployee@qwikcilver.com') from QB_userdetails where useremail = 'jayasurya@qwikcilver.com')and QBrcd.botcommands='start';
+ERROR:  syntax error at or near "QBud"
+LINE 1: ...n QBud.accessrole_code=QBrcd.accessrole_codewhere QBud.usere...
+                                                             ^
+practice2=# select count(1) from qb_userdetails QBud  join  qb_rolecommanddetails QBcrd  on QBud.accessrole_code=QBrcd.accessrole_codewhere QBud.useremail=(select isnull(useremail, 'qcemployee@qwikcilver.com') from QB_userdetails where useremail = 'jayasurya@qwikcilver.com')and QBrcd.botcommands='start';
+ERROR:  syntax error at or near "QBud"
+LINE 1: ...n QBud.accessrole_code=QBrcd.accessrole_codewhere QBud.usere...
+                                                             ^
+practice2=# select count(1) from qb_userdetails QBud  join  qb_rolecommanddetails QBcrd  on QBud.accessrole_code=QBrcd.accessrole_code where QBud.useremail=(select isnull(useremail, 'qcemployee@qwikcilver.com') from QB_userdetails where useremail = 'jayasurya@qwikcilver.com')and QBrcd.botcommands='start';
+ERROR:  column qbud.accessrole_code does not exist
+LINE 1: ...tails QBud  join  qb_rolecommanddetails QBcrd  on QBud.acces...
+                                                             ^
+HINT:  Perhaps you meant to reference the column "qbud.acessrole_code".
+practice2=#
+
+    // For updating array value appending last items in array// UPDATE akash SET commands_valid= array_append(commands_valid,'gcstop') WHERE email='akash.pandit@qwickcilver.com'
