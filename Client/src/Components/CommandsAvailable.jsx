@@ -19,7 +19,7 @@ export default class CommandsAvailable extends Component {
       componentDidMount() 
       { 
        
-       axios.get("http://localhost:3006/api/v1/commanddetails").then(response=>{
+       axios.get("http://172.16.7.249:3006/api/v1/commanddetails").then(response=>{
          this.setState({userInfo:response.data.data.user})
          console.log(response);
         });
